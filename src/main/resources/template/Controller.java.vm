@@ -9,16 +9,19 @@ import ${package}.${moduleName}.service.${className}Service;
 import ${mainPath}.common.utils.PageUtils;
 import ${mainPath}.common.utils.R;
 
+import javax.validation.Valid;
+
 
 
 /**
  * ${comments}
  *
  * @author ${author}
- * @since ${datetime}
+ * @date ${datetime}
  */
 @RestController
 @RequestMapping("${moduleName}/${pathName}")
+@Api(tags = "${comments}")
 public class ${className}Controller {
     @Autowired
     private ${className}Service ${classname}Service;
@@ -27,9 +30,9 @@ public class ${className}Controller {
      * 带条件分页查询${classname}
      */
     @GetMapping("/list")
+    @ApiOperation(value = "带条件分页查询")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = ${classname}Service.queryPage(params);
-
 	    return R.ok(page);
     }
 
@@ -38,9 +41,9 @@ public class ${className}Controller {
      * 根据主键查询${classname}
      */
     @GetMapping("/info/{${pk.attrname}}")
+    @ApiOperation(value = "根据主键查询")
     public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
 		${className} ${classname} = ${classname}Service.getById(${pk.attrname});
-
         return R.ok(${classname});
     }
 
@@ -48,9 +51,9 @@ public class ${className}Controller {
      * 新增${classname}
      */
     @PostMapping("/save")
-    public R save(@RequestBody ${className} ${classname}){
+    @ApiOperation(value = "新增")
+    public R save(@RequestBody @Valid ${className} ${classname}){
 		${classname}Service.save(${classname});
-
         return R.ok();
     }
 
@@ -58,9 +61,9 @@ public class ${className}Controller {
      * 修改${classname}
      */
     @PutMapping("/update")
+    @ApiOperation(value = "修改")
     public R update(@RequestBody ${className} ${classname}){
 		${classname}Service.updateById(${classname});
-
         return R.ok();
     }
 
@@ -68,9 +71,9 @@ public class ${className}Controller {
      * 删除${classname}
      */
     @DeleteMapping("/delete")
+    @ApiOperation(value = "删除")
     public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s){
 		${classname}Service.removeByIds(Arrays.asList(${pk.attrname}s));
-
         return R.ok();
     }
 

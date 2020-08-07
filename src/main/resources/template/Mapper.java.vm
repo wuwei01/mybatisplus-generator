@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
  * ${comments}
  * 
  * @author ${author}
- * @since ${datetime}
+ * @date ${datetime}
  */
 @Mapper
 public interface ${className}Mapper extends BaseMapper<${className}> {

@@ -14,21 +14,24 @@ import lombok.Data;
  * ${comments}
  * 
  * @author ${author}
- * @since ${datetime}
+ * @date ${datetime}
  */
 @Data
 @TableName("${tableName}")
+@ApiModel(value="${comments}实体", description="${comments}")
 public class ${className} implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 #foreach ($column in $columns)
+
 	/**
 	 * $column.comments
 	 */
 	#if($column.columnName == $pk.columnName)
 @TableId
 	#end
-private $column.attrType $column.attrname;
+@ApiModelProperty(value = "$column.comments")
+	private $column.attrType $column.attrname;
 #end
 
 }
